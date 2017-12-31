@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "DEBUG=momyne:* node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -12,6 +12,7 @@
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "morgan": "~1.9.0",
+    "ping": "^0.2.2",
     "serve-favicon": "~2.4.5"
   },
   "description": "MOnitor MY NEtwork devices",
@@ -20,7 +21,7 @@
   "author": "gverni",
   "license": "ISC",
   "standard": {
-    "globals": [ ],
-    "env": [ ]
+    "globals": [],
+    "env": []
   }
 }
