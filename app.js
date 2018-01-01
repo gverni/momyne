@@ -10,6 +10,12 @@ var users = require('./routes/users')
 
 var app = express()
 
+// Read Configuration
+var jsonfile = require('jsonfile')
+var config = jsonfile.readFileSync('config.json')
+console.log(config)
+app.set('config', config)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
