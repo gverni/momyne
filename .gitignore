@@ -31,3 +31,6 @@ npm-debug.log
 
 # App configuration
 *config.json
+
+# External css/js framework libs
+public/libs
