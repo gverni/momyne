@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 
 var index = require('./routes/index')
 var status = require('./routes/status')
+var service = require('./routes/service')
 
 var app = express()
 
@@ -14,6 +15,7 @@ var app = express()
 var jsonfile = require('jsonfile')
 var config = jsonfile.readFileSync('config.json')
 console.log(config)
+// TODO: validate the config. Check that name is unique in the same array 
 app.set('config', config)
 
 // view engine setup
@@ -30,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', index)
 app.use('/status', status)
+app.use('/service', service)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
