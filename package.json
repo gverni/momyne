@@ -14,6 +14,7 @@
     "jsonfile": "^4.0.0",
     "morgan": "~1.9.0",
     "ping": "^0.2.2",
+    "request": "^2.83.0",
     "serve-favicon": "~2.4.5"
   },
   "description": "MOnitor MY NEtwork devices",
