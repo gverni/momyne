@@ -3,7 +3,7 @@
   <head>
     <title>Status</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="/libs/jquery-3.2.1.slim.min.js"></script>
+    <script src="/libs/jquery-3.2.1.min.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="/libs/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <script src="/libs/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
@@ -15,15 +15,17 @@
         <ul class="list-group">
         <li id="<%= host.name %>-group" class="list-group-item d-flex justify-content-between align-items-center align-items-center" data-toggle="collapse" href="#<%= host.name %>-collapse" >
           <%= host.name %> (<%= host.address %>)
-          <span id="<%= host.name %>-group-badge" class="badge badge-warning">issues</span>
+          <span id="<%= host.name %>-group-badge" class="badge badge-secondary">checking</span>
       </li>
       <div class="collapse" id="<%= host.name %>-collapse">
         <% host.services.forEach( function (service) { %>
-          <li id="<%= host.name %>-<%= service.name%>"class="list-group-item d-flex justify-content-between align-items-center"><%= service.name %>
-            <span if="<%= host.name %>-<%= service.name%>-badge"class="badge badge-danger">down</span></li>
+          <li id="<%= host.name %>-<%= service.name%>" class="list-group-item d-flex justify-content-between align-items-center"><%= service.name %>
+            <span id="<%= host.name %>-<%= service.name%>-badge" class="badge badge-secondary">checking</span></li>
         <% }) %>
       </div>
     </ul><br/>
       <% }) %>
+  <script src='/js/status.js'>
+  </script>
   </body>
 </html>
