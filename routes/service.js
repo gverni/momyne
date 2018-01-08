@@ -2,6 +2,10 @@
 /* REST API input parameters
  host: hosts[i].name in config.json
  service: host[i].service[i].name in config.json
+
+ OUTPUT:
+ status: "succes" | "error". Result of REST API execution
+ serviceStatus: "true" | "false". Status of the service
 */
 
 var express = require('express')
@@ -44,7 +48,7 @@ router.get('/', function (req, res, next) {
         if (service.protocol === 'ping') {
           console.log('Pinging ' + host.address)
           pingPromise(host.address).then((isAlive) => {
-            res.send({status: 'success', isAlive: isAlive})
+            res.send({status: 'success', serviceStatus: isAlive})
           }).catch((reason) => {
             res.send({status: 'error', details: 'Error on ping: ' + reason})
           })
@@ -54,10 +58,10 @@ router.get('/', function (req, res, next) {
             url: service.protocol + '://' + host.address + ':' + service.port + '/' + service.path,
             timeout: 5000 }
           request(options, function (error, response, body) {
-            if (error) {
+            if (!response) {
               res.send({status: 'error', details: error})
             } else {
-              res.send({status: 'success', statusCode: response.statusCode})
+              res.send({status: 'success', serviceStatus: (response.statusCode === 200), statusCode: response.statusCode})
             }
           })
         } else {
